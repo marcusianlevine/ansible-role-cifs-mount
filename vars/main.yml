@@ -1,0 +1,10 @@
+---
+
+apt_mount_packages:
+  - smbclient
+  - cifs-utils
+
+yum_mount_packages:
+  - samba-common 
+  - samba-client
+  - cifs-utils

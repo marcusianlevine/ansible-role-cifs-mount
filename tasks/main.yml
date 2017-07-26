@@ -1,0 +1,28 @@
+---
+
+- name: Install CIFS and other required packages for mounting with apt
+  apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed force=yes
+  with_items: "{{ apt_mount_packages }}"
+  when: ansible_os_family == 'Debian'
+  tags: packages
+
+- name: Install CIFS and other required packages for mounting with yum
+  yum: name={{ item }} update_cache={{ update_apt_cache }} state=installed
+  with_items: "{{ yum_mount_packages }}"
+  when: ansible_os_family == 'RedHat'
+  tags: packages
+
+- name: Place Samba credentials file
+  template:
+    src: .smbcredentials
+    dest: "{{ samba_home }}/.smbcredentials"
+    owner: "{{ samba_user }}"
+    mode: 0600
+
+- name: mount shared drive
+  mount:
+    fstype: cifs
+    state: mounted
+    path: "{{ samba_mount_path }}"
+    opts: "credentials={{ samba_home }}/.smbcredentials,file_mode=0777,dir_mode=0777"
+    src: "{{ samba_share }}" 
