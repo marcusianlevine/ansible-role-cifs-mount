@@ -14,7 +14,7 @@
 
 - name: Place Samba credentials file
   template:
-    src: .smbcredentials
+    src: .smbcredentials.j2
     dest: "{{ samba_home }}/.smbcredentials"
     owner: "{{ samba_user }}"
     mode: 0600
