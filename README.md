@@ -19,7 +19,7 @@ A description of the settable variables for this role should go here, including 
 
 * `samba_mount_path`: Path at which the drive will be mounted (default: `/share`)
 * `samba_user`: Username of the user who will own the mounted drive (default: `ansible_user_id`)
-* `samba_home`: Home directory of `samba_user` (default: `/home/{{ samba_user }}`)
+* `samba_home`: Home directory of `samba_user` (default: `{{ ansible_env.HOME }}`)
 
 Example Playbook
 ----------------

@@ -1,5 +1,5 @@
 ---
 
 samba_user: "{{ ansible_user_id }}"
-samba_home: "/home/{{ samba_user }}"
+samba_home: "{{ ansible_env.HOME }}"
 samba_mount_path: "/share"
