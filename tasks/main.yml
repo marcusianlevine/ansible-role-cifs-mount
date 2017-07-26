@@ -25,4 +25,5 @@
     state: mounted
     path: "{{ samba_mount_path }}"
     opts: "credentials={{ samba_home }}/.smbcredentials,file_mode=0777,dir_mode=0777"
-    src: "{{ samba_share }}" 
+    src: "{{ samba_share }}"
+  remote_user: "{{ samba_user }}"
